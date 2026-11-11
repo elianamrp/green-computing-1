@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart IT Asset Lifecycle - Universitas</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 p-2.5 rounded-lg shadow-md">
+                    <i class="fa-solid fa-microchip text-2xl text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold leading-tight">Smart IT Asset Lifecycle</h1>
+                    <p class="text-xs text-indigo-200">Node.js Express & AI Circular Economy System</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs px-3 py-1.5 rounded-full font-medium flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Node.js Server Active
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow space-y-8 w-full">
+
+        <!-- Stat Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Aset Terdaftar</p>
+                    <h3 class="text-2xl font-bold text-slate-800 mt-1"><%= assets.length + 1242 %></h3>
+                    <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-desktop text-indigo-500 mr-1"></i> Komputer & Jaringan</p>
+                </div>
+                <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 text-xl font-bold">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Rata-Rata Health Score</p>
+                    <h3 class="text-2xl font-bold text-emerald-600 mt-1">84.2<span class="text-sm font-normal text-slate-500">/100</span></h3>
+                    <p class="text-xs text-emerald-600 mt-1 font-medium"><i class="fa-solid fa-circle-check mr-1"></i> Kondisi Prima</p>
+                </div>
+                <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 text-xl font-bold">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Rekomendasi Perpanjang</p>
+                    <h3 class="text-2xl font-bold text-blue-600 mt-1">312 <span class="text-xs font-normal text-slate-500">Unit</span></h3>
+                    <p class="text-xs text-blue-600 mt-1 font-medium"><i class="fa-solid fa-arrows-rotate mr-1"></i> Life Extension AI</p>
+                </div>
+                <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-xl font-bold">
+                    <i class="fa-solid fa-recycle"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Estimasi Penghematan</p>
+                    <h3 class="text-2xl font-bold text-indigo-600 mt-1">Rp 480 Jt</h3>
+                    <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-leaf text-emerald-500 mr-1"></i> 1.2 Ton E-Waste Dicegah</p>
+                </div>
+                <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 text-xl font-bold">
+                    <i class="fa-solid fa-piggy-bank"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm lg:col-span-1">
+                <h3 class="font-bold text-slate-800 text-base mb-1">Distribusi Kondisi Kesehatan Aset</h3>
+                <p class="text-xs text-slate-500 mb-4">Klasifikasi telemetry AI</p>
+                <div class="relative flex justify-center items-center h-64">
+                    <canvas id="healthPieChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm lg:col-span-2">
+                <div class="flex justify-between items-center mb-1">
+                    <h3 class="font-bold text-slate-800 text-base">Keputusan Rekomendasi AI per Fakultas</h3>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-medium">Model: XGBoost</span>
+                </div>
+                <p class="text-xs text-slate-500 mb-4">Aksi: Upgrade / Perpanjang, Service, atau Retire</p>
+                <div class="h-64">
+                    <canvas id="actionBarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Table & Add Asset -->
+        <section class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h3 class="font-bold text-slate-800 text-lg">Inventaris Aset & Telemetry Server</h3>
+                    <p class="text-xs text-slate-500">Data bersumber dari backend Node.js (Express)</p>
+                </div>
+                <button onclick="openAddModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-xs font-semibold shadow-sm transition flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Tambah Aset Baru
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-slate-600">
+                    <thead class="bg-slate-50 text-slate-500 font-semibold uppercase tracking-wider border-b border-slate-200">
+                        <tr>
+                            <th class="px-6 py-3.5">ID & Perangkat</th>
+                            <th class="px-6 py-3.5">Unit / Lokasi</th>
+                            <th class="px-6 py-3.5">Umur</th>
+                            <th class="px-6 py-3.5">Telemetry (Suhu / SSD)</th>
+                            <th class="px-6 py-3.5">Health Score</th>
+                            <th class="px-6 py-3.5">Rekomendasi AI</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <% assets.forEach(item => { %>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4 font-bold text-slate-800"><%= item.id %><div class="text-[11px] font-normal text-slate-500"><%= item.name %></div></td>
+                            <td class="px-6 py-4 font-medium"><%= item.unit %></td>
+                            <td class="px-6 py-4"><%= item.age %></td>
+                            <td class="px-6 py-4">
+                                <span class="mr-2"><i class="fa-solid fa-temperature-half text-slate-400"></i> <%= item.temp %></span>
+                                <span><i class="fa-solid fa-hard-drive text-slate-400"></i> <%= item.ssd %></span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center space-x-2">
+                                    <span class="font-bold text-slate-700 w-6"><%= item.health %></span>
+                                    <div class="w-20 bg-slate-200 h-2 rounded-full overflow-hidden">
+                                        <div class="<%= item.health > 75 ? 'bg-emerald-500' : (item.health > 50 ? 'bg-amber-500' : 'bg-rose-500') %> h-full" style="width: <%= item.health %>%"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <% if(item.status === 'EXTEND') { %>
+                                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-1 rounded-full"><i class="fa-solid fa-arrow-up-right-dots"></i> EXTEND</span>
+                                <% } else if(item.status === 'SERVICE') { %>
+                                    <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-1 rounded-full"><i class="fa-solid fa-wrench"></i> SERVICE</span>
+                                <% } else { %>
+                                    <span class="bg-rose-100 text-rose-800 text-[10px] font-bold px-2 py-1 rounded-full"><i class="fa-solid fa-recycle"></i> RETIRE</span>
+                                <% } %>
+                                <p class="text-[11px] text-slate-500 mt-1"><%= item.rec %></p>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Add Asset -->
+    <div id="addModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-slate-800 text-base">Tambah Aset IT Baru</h3>
+                <button onclick="closeAddModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form action="/api/add-asset" method="POST" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-medium text-slate-600 mb-1">Nama Perangkat</label>
+                    <input type="text" name="name" required placeholder="Contoh: PC Server Lab" class="w-full border rounded-lg p-2">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-medium text-slate-600 mb-1">Unit / Fakultas</label>
+                        <select name="unit" class="w-full border rounded-lg p-2 bg-white">
+                            <option value="Lab FTI">Lab FTI</option>
+                            <option value="Perpustakaan">Perpustakaan</option>
+                            <option value="Rektorat">Rektorat</option>
+                            <option value="Lab Elektro">Lab Elektro</option>
+                        </>
+                    </div>
+                    <div>
+                        <label class="block font-medium text-slate-600 mb-1">Umur (Tahun)</label>
+                        <input type="text" name="age" required placeholder="2.5" class="w-full border rounded-lg p-2">
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                    <div>
+                        <label class="block font-medium text-slate-600 mb-1">Suhu (°C)</label>
+                        <input type="text" name="temp" required placeholder="45" class="w-full border rounded-lg p-2">
+                    </div>
+                    <div>
+                        <label class="block font-medium text-slate-600 mb-1">SSD Health (%)</label>
+                        <input type="text" name="ssd" required placeholder="95" class="w-full border rounded-lg p-2">
+                    </div>
+                    <div>
+                        <label class="block font-medium text-slate-600 mb-1">Health Score (0-100)</label>
+                        <input type="number" name="health" required placeholder="90" class="w-full border rounded-lg p-2">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-medium text-slate-600 mb-1">Status Rekomendasi</label>
+                    <select name="status" class="w-full border rounded-lg p-2 bg-white">
+                        <option value="EXTEND">EXTEND (Perpanjang)</option>
+                        <option value="SERVICE">SERVICE (Perbaikan)</option>
+                        <option value="RETIRE">RETIRE (Daur Ulang)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-medium text-slate-600 mb-1">Keterangan Aksi AI</label>
+                    <input type="text" name="rec" required placeholder="Upgrade RAM & Thermal Paste" class="w-full border rounded-lg p-2">
+                </div>
+                <div class="flex justify-end space-x-2 pt-2">
+                    <button type="button" onclick="closeAddModal()" class="px-4 py-2 border rounded-lg">Batal</button>
+                    <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold">Simpan Aset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script Chart -->
+    <script>
+        function openAddModal() { document.getElementById('addModal').classList.remove('hidden'); }
+        function closeAddModal() { document.getElementById('addModal').classList.add('hidden'); }
+
+        const ctxPie = document.getElementById('healthPieChart').getContext('2d');
+        new Chart(ctxPie, {
+            type: 'doughnut',
+            data: {
+                labels: ['Sangat Layak (>75)', 'Cukup Layak (50-75)', 'Kritis (<50)'],
+                datasets: [{ data: [780, 312, 156], backgroundColor: ['#10b981', '#f59e0b', '#f43f5e'], borderWidth: 0 }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } } }
+        });
+
+        const ctxBar = document.getElementById('actionBarChart').getContext('2d');
+        new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: ['Lab FTI', 'Perpustakaan', 'Rektorat', 'Lab Elektro', 'Fak. Hukum', 'Fak. Ekonomi'],
+                datasets: [
+                    { label: 'Perpanjang', data: [120, 45, 60, 30, 40, 50], backgroundColor: '#4f46e5' },
+                    { label: 'Service', data: [25, 20, 15, 10, 12, 18], backgroundColor: '#f59e0b' },
+                    { label: 'Recycle', data: [10, 8, 5, 15, 6, 4], backgroundColor: '#f43f5e' }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, grid: { color: '#f1f5f9' } } },
+                plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } }
+            }
+        });
+    </script>
+</body>
+</html>

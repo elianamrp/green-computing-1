@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart IT Asset Lifecycle - Universitas</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+    <!-- Header / Navbar -->
+    <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 p-2.5 rounded-lg shadow-md">
+                    <i class="fa-solid fa-microchip text-2xl text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold leading-tight">Smart IT Asset Lifecycle</h1>
+                    <p class="text-xs text-indigo-200">Sistem Manajemen Aset Berbasis AI & Ekonomi Sirkular Universitas</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs px-3 py-1.5 rounded-full font-medium flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Telemetry Active
+                </span>
+                <div class="flex items-center space-x-2 border-l border-indigo-700 pl-4">
+                    <img src="https://ui-avatars.com/api/?name=Admin+TI&background=4f46e5&color=fff" class="w-8 h-8 rounded-full border border-indigo-400">
+                    <div class="text-xs hidden md:block">
+                        <p class="font-semibold">Admin TI Central</p>
+                        <p class="text-indigo-300">Tim Infrastruktur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow space-y-8 w-full">
+
+        <!-- Stat Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Aset Terdaftar</p>
+                    <h3 class="text-2xl font-bold text-slate-800 mt-1" id="stat-total-assets">1,248</h3>
+                    <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-desktop text-indigo-500 mr-1"></i> Komputer & Perangkat Jaringan</p>
+                </div>
+                <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 text-xl font-bold">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Rata-Rata Health Score</p>
+                    <h3 class="text-2xl font-bold text-emerald-600 mt-1">84.2<span class="text-sm font-normal text-slate-500">/100</span></h3>
+                    <p class="text-xs text-emerald-600 mt-1 font-medium"><i class="fa-solid fa-circle-check mr-1"></i> Kondisi Keseluruhan Baik</p>
+                </div>
+                <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 text-xl font-bold">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Rekomendasi Perpanjang</p>
+                    <h3 class="text-2xl font-bold text-blue-600 mt-1">312 <span class="text-xs font-normal text-slate-500">Perangkat</span></h3>
+                    <p class="text-xs text-blue-600 mt-1 font-medium"><i class="fa-solid fa-arrows-rotate mr-1"></i> Life Extension via AI</p>
+                </div>
+                <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-xl font-bold">
+                    <i class="fa-solid fa-recycle"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Estimasi Penghematan</p>
+                    <h3 class="text-2xl font-bold text-indigo-600 mt-1">Rp 480 Jt</h3>
+                    <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-leaf text-emerald-500 mr-1"></i> 1.2 Ton E-Waste Dicegah</p>
+                </div>
+                <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 text-xl font-bold">
+                    <i class="fa-solid fa-piggy-bank"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm lg:col-span-1">
+                <h3 class="font-bold text-slate-800 text-base mb-1">Distribusi Kondisi Kesehatan Aset</h3>
+                <p class="text-xs text-slate-500 mb-4">Klasifikasi kelayakan aset berdasarkan telemetry AI</p>
+                <div class="relative flex justify-center items-center h-64">
+                    <canvas id="healthPieChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm lg:col-span-2">
+                <div class="flex justify-between items-center mb-1">
+                    <h3 class="font-bold text-slate-800 text-base">Keputusan Rekomendasi AI per Fakultas / Unit</h3>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-medium">Model: XGBoost Classifier</span>
+                </div>
+                <p class="text-xs text-slate-500 mb-4">Estimasi aksi: Perpanjang masa pakai (Upgrade), Service, atau Retire/Scrap</p>
+                <div class="h-64">
+                    <canvas id="actionBarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Asset Table Section -->
+        <section class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h3 class="font-bold text-slate-800 text-lg">Inventaris Aset & Rekomendasi Masa Pakai</h3>
+                    <p class="text-xs text-slate-500">Pantau kondisi fisik, suhu hardware, S.M.A.R.T SSD, dan keputusan AI</p>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" id="searchInput" onkeyup="filterAssets()" placeholder="Cari Kode Aset / Perangkat..." class="pl-9 pr-4 py-2 border border-slate-300 rounded-lg text-xs w-64 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <select id="unitFilter" onchange="filterAssets()" class="border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="ALL">Semua Unit / Fakultas</option>
+                        <option value="Lab FTI">Lab FTI</option>
+                        <option value="Perpustakaan">Perpustakaan</option>
+                        <option value="Rektorat">Rektorat</option>
+                        <option value="Lab Elektro">Lab Elektro</option>
+                    </select>
+                    <button onclick="runAiAssessment()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-xs font-semibold shadow-sm transition flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Run AI Diagnostics
+                    </button>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-slate-600">
+                    <thead class="bg-slate-50 text-slate-500 font-semibold uppercase tracking-wider border-b border-slate-200">
+                        <tr>
+                            <th class="px-6 py-3.5">ID & Perangkat</th>
+                            <th class="px-6 py-3.5">Unit / Lokasi</th>
+                            <th class="px-6 py-3.5">Umur Aset</th>
+                            <th class="px-6 py-3.5">Telemetry (Suhu / SSD)</th>
+                            <th class="px-6 py-3.5">Health Score</th>
+                            <th class="px-6 py-3.5">Rekomendasi Keputusan AI</th>
+                            <th class="px-6 py-3.5 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assetTableBody" class="divide-y divide-slate-100">
+                        <!-- Content populated via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Circular Economy Impact Calculator Section -->
+        <section class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 text-white rounded-2xl p-6 lg:p-8 shadow-xl">
+            <div class="max-w-3xl">
+                <span class="bg-indigo-500/30 text-indigo-200 text-xs px-3 py-1 rounded-full border border-indigo-400/30 uppercase tracking-widest font-bold">Kalkulator Ekonomi Sirkular</span>
+                <h3 class="text-xl lg:text-2xl font-bold mt-3 mb-2">Simulasi Penghematan Anggaran & Dampak Lingkungan Universitas</h3>
+                <p class="text-slate-300 text-xs lg:text-sm mb-6">Hitung langsung kontribusi efisiensi perpanjangan masa pakai aset IT terhadap penurunan emisi karbon dan pencegahan limbah elektronik (e-waste).</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white/10 backdrop-blur-md p-5 rounded-xl border border-white/10">
+                <div>
+                    <label class="text-xs font-medium text-slate-300 block mb-2">Jumlah PC Di-upgrade (RAM/SSD)</label>
+                    <input type="number" id="calcUnits" value="150" oninput="calculateImpact()" class="w-full bg-slate-800 border border-slate-600 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-400">
+                </div>
+                <div>
+                    <label class="text-xs font-medium text-slate-300 block mb-2">Harga PC Baru (Rata-rata)</label>
+                    <input type="number" id="calcPrice" value="8500000" oninput="calculateImpact()" class="w-full bg-slate-800 border border-slate-600 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-400">
+                </div>
+                <div>
+                    <label class="text-xs font-medium text-slate-300 block mb-2">Biaya Component Upgrade/Unit</label>
+                    <input type="number" id="calcUpgrade" value="1200000" oninput="calculateImpact()" class="w-full bg-slate-800 border border-slate-600 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-400">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                <div class="bg-white/5 border border-white/10 p-4 rounded-xl">
+                    <p class="text-xs text-slate-400">Total Penghematan CapEx</p>
+                    <h4 class="text-xl font-bold text-emerald-400 mt-1" id="resSavedCapEx">Rp 1.095.000.000</h4>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-4 rounded-xl">
+                    <p class="text-xs text-slate-400">E-Waste Dicegah (Kg)</p>
+                    <h4 class="text-xl font-bold text-indigo-300 mt-1" id="resEwaste">1,800 Kg</h4>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-4 rounded-xl">
+                    <p class="text-xs text-slate-400">Reduksi Emisi Karbon (CO2e)</p>
+                    <h4 class="text-xl font-bold text-teal-300 mt-1" id="resCarbon">48.5 Ton CO2</h4>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-2">
+            <p>© 2026 Universitas Bandar Lampung - Smart IT Asset Lifecycle Management</p>
+            <p class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-indigo-600"></i> AI Decision Engine v2.4 (Active)</p>
+        </div>
+    </footer>
+
+    <!-- Asset Detail Modal -->
+    <div id="assetModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-slate-200 space-y-6">
+            <div class="flex justify-between items-start border-b border-slate-100 pb-4">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800" id="modalTitle">Detail Telemetry & AI Diagnosis</h3>
+                    <p class="text-xs text-slate-500" id="modalSub">Serial Number: SN-99482-UBL</p>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-slate-50 p-4 rounded-xl text-xs">
+                <div>
+                    <span class="text-slate-400 block">Health Score</span>
+                    <span class="text-lg font-bold text-emerald-600" id="modalHealth">88%</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block">Suhu CPU</span>
+                    <span class="text-sm font-semibold text-slate-700" id="modalTemp">48 °C</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block">S.M.A.R.T SSD</span>
+                    <span class="text-sm font-semibold text-slate-700" id="modalSsmart">94% Good</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block">Masa Pakai Saat Ini</span>
+                    <span class="text-sm font-semibold text-slate-700" id="modalAge">3.5 Tahun</span>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="font-bold text-xs uppercase tracking-wider text-slate-500">Rekomendasi AI Decision Engine</h4>
+                <div class="bg-indigo-50 border border-indigo-200 p-4 rounded-xl flex items-start gap-3">
+                    <i class="fa-solid fa-robot text-indigo-600 text-xl mt-0.5"></i>
+                    <div class="text-xs space-y-1">
+                        <p class="font-bold text-indigo-900" id="modalRecommendation">Rekomendasi: Perpanjang Masa Pakai (+2 Tahun)</p>
+                        <p class="text-indigo-700 leading-relaxed" id="modalAiDetail">Berdasarkan telemetry, kesehatan prosesor dan motherboard dalam kondisi sangat prima. Lakukan upgrade SSD ke NVMe 512GB dan pembersihan pasta termal untuk performa optimal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-3 pt-2">
+                <button onclick="closeModal()" class="px-4 py-2 border border-slate-300 text-slate-700 text-xs rounded-lg font-semibold hover:bg-slate-50">Tutup</button>
+                <button onclick="executeAction()" class="px-4 py-2 bg-indigo-600 text-white text-xs rounded-lg font-semibold hover:bg-indigo-700 shadow-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-check"></i> Eksekusi Keputusan AI
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Sample Data Assets
+        let assetsData = [
+            { id: "AST-FTI-001", name: "PC Workstation i7", unit: "Lab FTI", age: "3.5 Thn", temp: "48 °C", ssd: "94%", health: 88, status: "EXTEND", rec: "Perpanjang Masa Pakai (+2 Thn via RAM Upgrade)" },
+            { id: "AST-LIB-042", name: "PC Anjungan Katalog", unit: "Perpustakaan", age: "5.1 Thn", temp: "72 °C", ssd: "42%", health: 54, status: "SERVICE", rec: "Ganti SSD & Thermal Paste (Service Rutin)" },
+            { id: "AST-REK-012", name: "Laptop Admin Rektorat", unit: "Rektorat", age: "4.0 Thn", temp: "55 °C", ssd: "81%", health: 79, status: "EXTEND", rec: "Perpanjang Masa Pakai (+1.5 Thn)" },
+            { id: "AST-ELK-088", name: "Cisco Switch 2960", unit: "Lab Elektro", age: "6.8 Thn", temp: "68 °C", ssd: "N/A", health: 38, status: "RETIRE", rec: "Daur Ulang (E-Waste / Dismantle Spareparts)" },
+            { id: "AST-FTI-104", name: "PC Core i5 Graphic Lab", unit: "Lab FTI", age: "2.1 Thn", temp: "42 °C", ssd: "98%", health: 95, status: "EXTEND", rec: "Kondisi Prima (Perpanjang Masa Pakai Otomatis)" },
+            { id: "AST-LIB-019", name: "PC Kasir Sirkulasi", unit: "Perpustakaan", age: "4.8 Thn", temp: "64 °C", ssd: "60%", health: 62, status: "SERVICE", rec: "Perbaikan Fan & Pembersihan Debu Komponen" }
+        ];
+
+        // Render Table Data
+        function renderTable(data) {
+            const tbody = document.getElementById('assetTableBody');
+            tbody.innerHTML = '';
+
+            data.forEach(item => {
+                let statusBadge = '';
+                if(item.status === 'EXTEND') {
+                    statusBadge = `<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full border border-emerald-300"><i class="fa-solid fa-arrow-up-right-dots mr-1"></i> EXTEND LIFE</span>`;
+                } else if(item.status === 'SERVICE') {
+                    statusBadge = `<span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full border border-amber-300"><i class="fa-solid fa-wrench mr-1"></i> NEEDS SERVICE</span>`;
+                } else {
+                    statusBadge = `<span class="bg-rose-100 text-rose-800 text-[10px] font-bold px-2.5 py-1 rounded-full border border-rose-300"><i class="fa-solid fa-recycle mr-1"></i> RETIRE / RECYCLE</span>`;
+                }
+
+                let healthBarColor = item.health > 75 ? 'bg-emerald-500' : (item.health > 50 ? 'bg-amber-500' : 'bg-rose-500');
+
+                let row = `
+                <tr class="hover:bg-slate-50 transition">
+                    <td class="px-6 py-4">
+                        <div class="font-bold text-slate-800">${item.id}</div>
+                        <div class="text-[11px] text-slate-500">${item.name}</div>
+                    </td>
+                    <td class="px-6 py-4 font-medium">${item.unit}</td>
+                    <td class="px-6 py-4">${item.age}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3 text-[11px]">
+                            <span><i class="fa-solid fa-temperature-half text-slate-400 mr-1"></i>${item.temp}</span>
+                            <span><i class="fa-solid fa-hard-drive text-slate-400 mr-1"></i>${item.ssd}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="font-bold text-slate-700 w-6">${item.health}</span>
+                            <div class="w-20 bg-slate-200 h-2 rounded-full overflow-hidden">
+                                <div class="${healthBarColor} h-full" style="width: ${item.health}%"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        ${statusBadge}
+                        <p class="text-[11px] text-slate-500 mt-1">${item.rec}</p>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <button onclick="openModal('${item.id}')" class="text-indigo-600 hover:text-indigo-900 bg-indigo-50 hover:bg-indigo-100 p-2 rounded-lg transition">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </td>
+                </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Filter Functionality
+        function filterAssets() {
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            const unitValue = document.getElementById('unitFilter').value;
+
+            const filtered = assetsData.filter(item => {
+                const matchesSearch = item.id.toLowerCase().includes(searchValue) || item.name.toLowerCase().includes(searchValue);
+                const matchesUnit = (unitValue === 'ALL') || (item.unit === unitValue);
+                return matchesSearch && matchesUnit;
+            });
+
+            renderTable(filtered);
+        }
+
+        // Modal Logic
+        function openModal(assetId) {
+            const asset = assetsData.find(a => a.id === assetId);
+            if(!asset) return;
+
+            document.getElementById('modalTitle').innerText = `${asset.id} - ${asset.name}`;
+            document.getElementById('modalSub').innerText = `Unit: ${asset.unit} | Telemetry Live Log`;
+            document.getElementById('modalHealth').innerText = `${asset.health}%`;
+            document.getElementById('modalTemp').innerText = asset.temp;
+            document.getElementById('modalSsmart').innerText = asset.ssd;
+            document.getElementById('modalAge').innerText = asset.age;
+            document.getElementById('modalRecommendation').innerText = `Rekomendasi AI: Keputusan ${asset.status}`;
+            document.getElementById('modalAiDetail').innerText = asset.rec;
+
+            document.getElementById('assetModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('assetModal').classList.add('hidden');
+        }
+
+        function executeAction() {
+            alert('Keputusan AI berhasil dieksekusi dan dicatat dalam log pemeliharaan.');
+            closeModal();
+        }
+
+        function runAiAssessment() {
+            alert('AI Telemetry Agent sedang mengumpulkan log terbaru dari seluruh perangkat di jaringan...');
+            // Randomly adjust health score slightly for interactive feel
+            assetsData.forEach(a => {
+                a.health = Math.min(100, Math.max(20, a.health + Math.floor(Math.random() * 5) - 2));
+            });
+            renderTable(assetsData);
+        }
+
+        // Circular Economy Calculator Logic
+        function calculateImpact() {
+            const units = parseFloat(document.getElementById('calcUnits').value) || 0;
+            const price = parseFloat(document.getElementById('calcPrice').value) || 0;
+            const upgrade = parseFloat(document.getElementById('calcUpgrade').value) || 0;
+
+            const savedCapEx = units * (price - upgrade);
+            const eWasteKg = units * 12; // Asumsi 12kg per desktop PC
+            const carbonTon = (units * 320) / 1000; // Asumsi 320kg CO2 per PC manufaktur baru
+
+            document.getElementById('resSavedCapEx').innerText = 'Rp ' + savedCapEx.toLocaleString('id-ID');
+            document.getElementById('resEwaste').innerText = eWasteKg.toLocaleString('id-ID') + ' Kg';
+            document.getElementById('resCarbon').innerText = carbonTon.toFixed(1) + ' Ton CO2';
+        }
+
+        // Chart.js Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable(assetsData);
+            calculateImpact();
+
+            // Doughnut Chart: Asset Health
+            const ctxPie = document.getElementById('healthPieChart').getContext('2d');
+            new Chart(ctxPie, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Sangat Layak (>75)', 'Cukup Layak (50-75)', 'Kritis / Afkir (<50)'],
+                    datasets: [{
+                        data: [780, 312, 156],
+                        backgroundColor: ['#10b981', '#f59e0b', '#f43f5e'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { size: 11 } } }
+                    }
+                }
+            });
+
+            // Bar Chart: AI Action Recommendations per Faculty
+            const ctxBar = document.getElementById('actionBarChart').getContext('2d');
+            new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['Lab FTI', 'Perpustakaan', 'Rektorat', 'Lab Elektro', 'Fak. Hukum', 'Fak. Ekonomi'],
+                    datasets: [
+                        { label: 'Perpanjang Masa Pakai', data: [120, 45, 60, 30, 40, 50], backgroundColor: '#4f46e5' },
+                        { label: 'Service / Perbaikan', data: [25, 20, 15, 10, 12, 18], backgroundColor: '#f59e0b' },
+                        { label: 'Daur Ulang (Scrap)', data: [10, 8, 5, 15, 6, 4], backgroundColor: '#f43f5e' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { stacked: true, grid: { display: false } },
+                        y: { stacked: true, grid: { color: '#f1f5f9' } }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { size: 11 } } }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
